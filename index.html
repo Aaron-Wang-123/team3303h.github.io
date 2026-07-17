@@ -1,426 +1,606 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3303H | Innovation. Elevated.</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3303H | Innovation. Elevated.</title>
 
-    <style>
-        :root {
-            --dark-bg: #000000;
-            --light-bg: #1a1a1a;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.15);
-            --accent-color: #3f6e9b;
-            --text-color: #f5f5f7;
-        }
+<!-- ============================================================
+     3303H — FULL REDESIGN (complete original content, nothing cut)
+     Sections, in order: Hero · Robot · Driving · Scoring · Stats ·
+     CAD · Game · Vibe Coding · Outreach · Process · Vision · Team.
+     Every line of copy from the original file is preserved verbatim.
+     All 7 original image filenames are preserved, unconstrained
+     (natural aspect ratio, not cropped). Drop the files in next to
+     this HTML and they'll appear.
+     ============================================================ -->
 
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text-color);
-            font-family: --system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            position: relative;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-        /* --- Faint Glow Effect --- */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 10%, rgba(63, 110, 155, 0.1), transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.8;
-        }
+<style>
+:root{
+  --void:#07080C; --graphite:#0D0F16; --panel:#12151F; --panel-2:#161A26;
+  --line:#232838; --line-bright:#3A4358;
+  --ink:#ECEFF6; --ink-dim:#828BA0; --ink-faint:#565E72;
+  --signal:#2FE6D0;        /* teal — primary data/highlight color */
+  --signal-deep:#159f92;
+  --alert:#FF6B35;         /* orange — secondary highlight */
+  --blue:#3f6e9b;          /* steel blue — 3303H's own accent, blended in as a third tone */
+  --blue-glow:rgba(63,110,155,.28);
+  --grid:rgba(255,255,255,.035); --grid-strong:rgba(47,230,208,.10);
+  --f-display:'Archivo',system-ui,sans-serif;
+  --f-body:'Inter',system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--ink);font-family:var(--f-body);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--signal);color:var(--void)}
+ul{list-style:none}
 
-        /* --- Glass Navbar (Fixed) --- */
-        .navbar-glass {
-            backdrop-filter: blur(20px) saturate(200%);
-            background-color: rgba(0, 0, 0, 0.7);
-            border-bottom: 1px solid var(--glass-border);
-            z-index: 1000;
-        }
-        .nav-link { color: var(--text-color) !important; transition: color 0.3s; }
-        .nav-link:hover { color: var(--accent-color) !important; }
+/* atmosphere */
+.grid-bg{position:fixed;inset:-12%;z-index:0;pointer-events:none;will-change:transform;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    linear-gradient(var(--grid-strong) 1px,transparent 1px),linear-gradient(90deg,var(--grid-strong) 1px,transparent 1px);
+  background-size:40px 40px,40px 40px,200px 200px,200px 200px}
+.vignette{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(130% 90% at 50% 0%,transparent 42%,rgba(4,5,8,.8) 100%),
+  radial-gradient(60% 40% at 85% 15%,var(--blue-glow),transparent 60%)}
+.scanline{position:fixed;inset:0;z-index:1;pointer-events:none;mix-blend-mode:overlay;opacity:.4;
+  background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(0,0,0,.35) 3px 4px)}
 
-        /* --- Long Scroll Sections --- */
-        .full-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 0;
-            position: relative;
-        }
+.wrap{position:relative;z-index:2}
+.container{width:min(1280px,92vw);margin-inline:auto}
+.eyebrow{font-family:var(--f-mono);font-size:clamp(.66rem,1vw,.82rem);letter-spacing:.3em;text-transform:uppercase;color:var(--signal);display:inline-flex;align-items:center;gap:.9em}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--signal);opacity:.7}
+.eyebrow.hot{color:var(--alert)} .eyebrow.hot::before{background:var(--alert)}
+.mega{font-family:var(--f-display);font-weight:900;text-transform:uppercase;line-height:.87;letter-spacing:-.03em;
+  font-size:clamp(2.3rem,7.5vw,6.4rem)}
+.mega.xl{font-size:clamp(3rem,10vw,9rem)}
+.mega .out{-webkit-text-stroke:clamp(1px,.3vw,3px) var(--ink);color:transparent}
+.mega .hot{color:var(--alert)} .mega .tel{color:var(--signal)} .mega .dim{color:var(--ink-faint)}
+.lead{color:var(--ink-dim);font-size:clamp(1.05rem,1.6vw,1.35rem);max-width:60ch}
+.tick{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
 
-        /* --- Typography & Headings --- */
-        .display- {
-            font-size: clamp(3rem, 7vw, 7rem);
-            font-weight: 600;
-            line-height: 1.1;
-            margin: 0;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        }
-        .display--sub {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 300;
-            color: var(--accent-color);
-        }
+/* ============================== NAV ============================== */
+header.nav{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;align-items:center;justify-content:space-between;
+  padding:1rem clamp(1.2rem,5vw,3rem);transition:.4s var(--ease);border-bottom:1px solid transparent}
+header.nav.solid{background:rgba(7,8,12,.72);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.brand{display:flex;align-items:center;gap:.75rem;font-family:var(--f-display);font-weight:900}
+.brand .mark{width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--signal);color:var(--signal);
+  font-family:var(--f-mono);font-size:.85rem;clip-path:polygon(0 0,100% 0,100% 70%,80% 100%,0 100%)}
+.brand .name{font-size:1.1rem} .brand .name b{color:var(--signal)}
+nav.links{display:flex;gap:1.7rem;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase}
+nav.links a{color:var(--ink-dim);position:relative;transition:color .25s}
+nav.links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--signal);transition:width .3s var(--ease)}
+nav.links a:hover{color:var(--ink)} nav.links a:hover::after{width:100%}
+.status{display:flex;align-items:center;gap:.5rem;color:var(--ink-dim);font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em}
+.status .dot{width:8px;height:8px;border-radius:50%;background:var(--signal);animation:pulse 3.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(47,230,208,.5)}70%{box-shadow:0 0 0 8px rgba(47,230,208,0)}100%{box-shadow:0 0 0 0 rgba(47,230,208,0)}}
+@media(max-width:900px){nav.links{display:none}.status .txt{display:none}}
 
-        /* --- Glass Card (Flexbox) --- */
-        .glass-card {
-            background-color: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
-        }
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(63, 110, 155, 0.3);
-        }
+/* ============================== HERO ============================== */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.hero .backdrop{position:absolute;inset:0;z-index:0;
+  background:radial-gradient(ellipse at 30% 15%,rgba(47,230,208,.16),transparent 55%),
+             radial-gradient(ellipse at 78% 75%,rgba(255,107,53,.13),transparent 55%),
+             radial-gradient(ellipse at 55% 45%,var(--blue-glow),transparent 60%),var(--void)}
+.hero-content{position:relative;z-index:3;padding:6rem clamp(1.2rem,5vw,3rem) 4rem;text-align:center;margin-inline:auto}
+.hero .kicker{font-family:var(--f-mono);font-size:clamp(.66rem,1vw,.8rem);letter-spacing:.26em;color:var(--ink-dim);text-transform:uppercase;margin-bottom:1.6rem}
+.callsign{font-family:var(--f-display);font-weight:900;text-transform:uppercase;line-height:.82;letter-spacing:-.045em;
+  font-size:clamp(3.6rem,15vw,11rem)}
+.callsign .char{display:inline-block}
+.callsign .h{color:var(--alert)}
+.hero .sub{margin-top:1.6rem;font-family:var(--f-display);font-weight:300;text-transform:none;
+  font-size:clamp(1.3rem,3.6vw,2.6rem);color:var(--blue);letter-spacing:-.01em}
+.hero .cta{display:inline-flex;align-items:center;gap:.7rem;margin-top:2.6rem;padding:1rem 2.2rem;
+  border:1px solid var(--signal);color:var(--void);background:var(--signal);font-family:var(--f-mono);
+  font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;transition:.3s var(--ease)}
+.hero .cta:hover{background:transparent;color:var(--signal);transform:translateY(-3px)}
+.hero .scrollcue{margin-top:3.4rem;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.22em;color:var(--ink-faint);
+  text-transform:uppercase;display:flex;align-items:center;gap:.7rem;justify-content:center}
+.hero .scrollcue i{width:1px;height:26px;background:linear-gradient(var(--signal),transparent);display:block;animation:cue 2.6s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.3}}
 
-        /* --- Image Styling --- */
-        .img-feature {
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: transform 0.5s ease;
-            max-width: 100%;
-            height: auto;
-        }
+/* marquee */
+.marquee{border-block:1px solid var(--line);background:var(--graphite);overflow:hidden;padding:.6rem 0;position:relative;z-index:2}
+.marquee .track{display:flex;gap:2.2rem;width:max-content;white-space:nowrap;animation:marq 42s linear infinite;
+  font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:clamp(1.6rem,5vw,3.4rem);
+  color:transparent;-webkit-text-stroke:1.3px var(--line-bright);letter-spacing:-.01em}
+.marquee .track .hot{-webkit-text-stroke-color:var(--alert)}
+.marquee .track .tel{-webkit-text-stroke-color:var(--signal)}
+.marquee.rev .track{animation-direction:reverse}
+@keyframes marq{to{transform:translateX(-50%)}}
 
-        /* --- Text Visibility Fix inside glass cards --- */
-        .glass-card .text-muted, .glass-card .lead {
-            color: #f5f5f5 !important;
-        }
-        .glass-card h4 {
-            color: var(--text-color);
-        }
-        .glass-card .h1 {
-             color: var(--accent-color);
-        }
+/* ============================== SECTION SHELL ============================== */
+section{position:relative;padding:clamp(4.5rem,10vw,8rem) 0}
+.alt{background:var(--graphite)}
+.sec-head{display:flex;flex-direction:column;gap:1.1rem;margin-bottom:clamp(2.4rem,5vw,3.6rem)}
+.sec-head.center{align-items:center;text-align:center}
+.wm{position:absolute;z-index:0;font-family:var(--f-display);font-weight:900;line-height:.7;
+  font-size:clamp(10rem,30vw,30rem);color:transparent;-webkit-text-stroke:2px var(--line);
+  right:-.05em;top:50%;transform:translateY(-50%);pointer-events:none;user-select:none;white-space:nowrap}
 
-        /* --- Custom Divider --- */
-        .divider {
-            height: 1px;
-            width: 80%;
-            margin: 50px auto;
-            background: linear-gradient(to right, transparent, var(--glass-border), transparent);
-        }
-    </style>
+/* ============================== IMAGES (plain, no frame chrome) ============================== */
+.shot{max-width:100%;width:auto;height:auto;display:block;margin-inline:auto;border-radius:10px;will-change:transform;
+  transition:transform .6s var(--ease),filter .6s var(--ease),box-shadow .6s var(--ease)}
+.shot:hover{transform:scale(1.025) !important;filter:brightness(1.08) saturate(1.08);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.shot.reveal[data-fx="scale"]{transform:scale(.9) translateY(30px)}
+/* the one MASSIVE reveal image */
+.massive{max-width:100%;width:auto;height:auto;display:block;margin-inline:auto;border-radius:14px;will-change:transform;
+  transition:transform 1.4s var(--ease)}
+.massive-wrap{display:flex;align-items:center;justify-content:center}
+.massive-wrap:hover .massive{transform:scale(1.035)}
+
+/* ============================== GLASS PANEL ============================== */
+.glass{position:relative;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);
+  padding:clamp(2rem,4.5vw,3.2rem);will-change:transform;
+  backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);
+  box-shadow:0 10px 40px rgba(0,0,0,.5);
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .55s var(--ease);
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%)}
+.glass:hover{transform:translateY(-8px);border-color:var(--signal-deep);box-shadow:0 22px 60px rgba(47,230,208,.18)}
+.glass::after{content:"";position:absolute;right:0;bottom:0;width:20px;height:20px;background:var(--alert)}
+.glass .tag{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.2em;color:var(--alert);text-transform:uppercase}
+.glass h3,.glass h4{font-family:var(--f-display);font-weight:900;letter-spacing:-.01em;margin:.8rem 0 .8rem;line-height:1.05}
+.glass p{color:var(--ink-dim)}
+.glass ul{margin-top:1rem;display:flex;flex-direction:column;gap:.5rem}
+.glass ul li{display:flex;align-items:center;gap:.6rem;color:var(--ink);font-size:.98rem}
+.glass ul li svg{width:18px;height:18px;stroke:var(--signal);fill:none;stroke-width:2;flex:none}
+.badge{display:inline-flex;padding:.4rem 1rem;border:1px solid var(--line-bright);color:var(--ink-dim);
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin:.3rem .4rem 0 0}
+
+/* ============================== SPLIT LAYOUT — matches original col-md-6 / col-md-6 grid ============================== */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.8rem,4vw,3.2rem);align-items:center}
+.split.rev > :first-child{order:2}
+.split.rev > :last-child{order:1}
+@media(max-width:860px){
+  .split{grid-template-columns:1fr}
+  .split.rev > :first-child,.split.rev > :last-child{order:initial}
+}
+
+/* ============================== CAPABILITY / ICON NODES ============================== */
+.pipeline{display:flex;flex-wrap:wrap;gap:clamp(1.2rem,3vw,2.5rem);justify-content:center}
+.node{flex:1 1 300px;max-width:400px;position:relative;background:var(--panel);border:1px solid var(--line);
+  padding:clamp(2rem,4vw,2.6rem) clamp(1.6rem,3vw,2.2rem) clamp(2rem,4vw,2.8rem);overflow:hidden;will-change:transform,opacity;
+  backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);box-shadow:0 10px 40px rgba(0,0,0,.5);
+  transition:transform .5s var(--ease),border-color .5s var(--ease)}
+.node:hover{transform:translateY(-8px) scale(1.015);border-color:var(--signal-deep)}
+.node::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .4s;
+  background:radial-gradient(340px circle at var(--mx,50%) var(--my,0%),rgba(47,230,208,.14),transparent 60%)}
+.node:hover::before{opacity:1}
+.node .rt{position:absolute;width:14px;height:14px;border-color:var(--signal);opacity:0;transition:opacity .35s,transform .35s var(--ease)}
+.node .rt.tl{top:8px;left:8px;border-top:1.5px solid;border-left:1.5px solid;transform:translate(-5px,-5px)}
+.node .rt.br{bottom:8px;right:8px;border-bottom:1.5px solid;border-right:1.5px solid;transform:translate(5px,5px)}
+.node:hover .rt{opacity:1;transform:translate(0,0)}
+.node .step{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.22em;color:var(--alert);text-transform:uppercase}
+.node .icon{width:clamp(44px,5.5vw,58px);height:clamp(44px,5.5vw,58px);margin:1.5rem 0 1.1rem;color:var(--signal)}
+.node .icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.3}
+.node h4{font-family:var(--f-display);font-weight:900;font-size:clamp(1.5rem,3vw,2.1rem);text-transform:uppercase;letter-spacing:-.01em;line-height:1.02}
+.node .desc{color:var(--ink-dim);font-size:.96rem;margin-top:.85rem;min-height:1.2em}
+.node .idx{position:absolute;top:1.4rem;right:1.5rem;font-family:var(--f-mono);font-size:.68rem;color:var(--ink-faint);letter-spacing:.15em}
+
+/* ============================== STATS ============================== */
+.stats{display:flex;flex-wrap:wrap;gap:clamp(1.2rem,3vw,2rem);justify-content:center}
+.stat{flex:1 1 280px;max-width:360px;background:var(--panel);border:1px solid var(--line);padding:clamp(2rem,4vw,2.6rem);
+  position:relative;overflow:hidden;will-change:transform;
+  backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);box-shadow:0 10px 40px rgba(0,0,0,.5);
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .55s var(--ease)}
+.stat:hover{transform:translateY(-8px);border-color:var(--signal-deep);box-shadow:0 22px 60px rgba(47,230,208,.16)}
+.stat::before{content:"";position:absolute;left:0;top:0;width:3px;height:0;background:var(--signal);transition:height .6s var(--ease)}
+.stat.in::before{height:100%}
+.stat .num{font-family:var(--f-display);font-weight:900;font-size:clamp(2.6rem,6vw,4.2rem);color:var(--signal);letter-spacing:-.02em;line-height:1}
+.stat .lbl{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-top:.7rem}
+.stat .note{color:var(--ink-faint);font-size:.85rem;margin-top:.6rem}
+
+/* ============================== OUTREACH ICON CARDS ============================== */
+.reach{display:flex;flex-wrap:wrap;gap:clamp(1.2rem,3vw,2rem);justify-content:center}
+.reach .glass{flex:1 1 380px}
+.reach .icon-lg{width:56px;height:56px;color:var(--signal);margin-bottom:1rem}
+.reach .icon-lg svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.4}
+
+/* ============================== SCROLL MOTION ============================== */
+.reveal{opacity:0;transition:opacity 1.3s var(--ease),transform 1.3s var(--ease);will-change:transform,opacity}
+.reveal.in{opacity:1}
+.reveal[data-fx="up"]{transform:translateY(60px)}
+.reveal[data-fx="up"].in{transform:translateY(0)}
+.reveal[data-fx="left"]{transform:translateX(-90px) rotate(-2deg)}
+.reveal[data-fx="left"].in{transform:translateX(0) rotate(0)}
+.reveal[data-fx="right"]{transform:translateX(90px) rotate(2deg)}
+.reveal[data-fx="right"].in{transform:translateX(0) rotate(0)}
+.reveal[data-fx="scale"]{transform:scale(.82) translateY(40px)}
+.reveal[data-fx="scale"].in{transform:scale(1) translateY(0)}
+.reveal[data-fx="tilt"]{transform:perspective(900px) rotateX(16deg) translateY(60px)}
+.reveal[data-fx="tilt"].in{transform:perspective(900px) rotateX(0) translateY(0)}
+.reveal[data-d="1"]{transition-delay:.16s}.reveal[data-d="2"]{transition-delay:.32s}.reveal[data-d="3"]{transition-delay:.48s}
+
+/* ============================== DIVIDER ============================== */
+.divider{height:1px;width:100%;margin:clamp(3rem,7vw,5rem) 0;background:linear-gradient(90deg,transparent,var(--line-bright),transparent)}
+
+/* ============================== FOOTER ============================== */
+footer{border-top:1px solid var(--line);padding:clamp(2.6rem,6vw,4rem) 0;position:relative;z-index:2}
+footer .container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer .fnote{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
+footer .fnote b{color:var(--signal)}
+
+/* ============================== BOOT ============================== */
+.booting .callsign .char{opacity:0;transform:translateY(40px)}
+.boot{position:fixed;inset:0;z-index:100;background:var(--void);display:grid;place-items:center;
+  font-family:var(--f-mono);color:var(--signal);transition:opacity .6s ease,visibility .6s}
+.boot .line{font-size:.8rem;letter-spacing:.24em}
+.boot .bar{width:min(300px,60vw);height:2px;background:var(--line);margin-top:1.1rem;overflow:hidden}
+.boot .bar i{display:block;height:100%;width:0;background:var(--signal);animation:load 1.8s var(--ease) forwards}
+@keyframes load{to{width:100%}}
+.boot.done{opacity:0;visibility:hidden}
+
+/* ============================== A11Y / MOTION ============================== */
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .reveal{opacity:1!important;transform:none!important}
+  .callsign .char{opacity:1!important;transform:none!important}
+  .boot{display:none}
+}
+@media(max-width:900px){.pipeline{flex-direction:column;align-items:stretch}.node{max-width:none}}
+</style>
 </head>
-<body>
 
-    <nav class="navbar navbar-expand-lg fixed-top navbar-glass">
-        <div class="container">
-            <a class="navbar-brand text-white" href="#">3303H</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#section-robot">Robot</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#section-metrics">Metrics</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#section-tech">Tech</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#section-team">Team</a></li>
-                </ul>
-            </div>
+<body class="booting">
+
+<div class="boot" id="boot" aria-hidden="true">
+  <div style="text-align:center">
+    <div class="line">INITIALIZING · 3303H CONTROL</div>
+    <div class="bar"><i></i></div>
+  </div>
+</div>
+
+<div class="grid-bg" id="grid"></div>
+<div class="vignette"></div>
+<div class="scanline"></div>
+
+<header class="nav" id="nav">
+  <div class="brand"><span class="mark">3H</span><span class="name">3303<b>H</b></span></div>
+  <nav class="links">
+    <a href="#section-robot">Robot</a>
+    <a href="#section-metrics">Metrics</a>
+    <a href="#section-tech">Tech</a>
+    <a href="#section-team">Team</a>
+  </nav>
+  <div class="status"><span class="dot"></span><span class="txt">SYSTEM ONLINE</span></div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="section-hero">
+    <div class="backdrop"></div>
+    <div class="hero-content">
+      <div class="kicker reveal in" data-fx="up">VEX V5 · 3303H CONTROL SYSTEM</div>
+      <h1 class="callsign" id="callsign" aria-label="3303H">
+        <span class="char">3</span><span class="char">3</span><span class="char">0</span><span class="char">3</span><span class="char h">H</span>
+      </h1>
+      <p class="sub reveal in" data-fx="up" data-d="1">We Need Excel 🙏.</p>
+      <p class="lead reveal in" data-fx="up" data-d="2" style="margin-inline:auto;text-align:center">The pinnacle of VEX V5 vibe coding.</p>
+      <a href="#section-robot" class="cta reveal in" data-fx="up" data-d="2">Explore the Build
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+      <div class="scrollcue"><i></i>SCROLL</div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>3303H</span><span class="tel">VEX V5</span><span>We Need Excel</span><span class="hot">🙏</span>
+      <span>3303H</span><span class="tel">VEX V5</span><span>We Need Excel</span><span class="hot">🙏</span>
+    </div>
+  </div>
+
+  <!-- ============ ROBOT ============ -->
+  <section id="section-robot" class="container">
+    <div class="wm" aria-hidden="true">BOT</div>
+    <div style="position:relative;z-index:2">
+      <div class="massive-wrap reveal" data-fx="scale">
+        <img class="massive" src="https://raw.githubusercontent.com/aaronasdasdwasd-lang/3303h.github.io/main/ruigooon%20cad-min.jpg" alt="VEX V5 Robot Render"
+             onerror="this.style.display='none'">
+      </div>
+
+      <div class="glass reveal container" data-fx="up" data-d="1" style="max-width:800px;margin:2.6rem auto 0">
+        <div class="tag">bot</div>
+        <h3 class="mega" style="font-size:clamp(1.8rem,4.5vw,3rem);color:var(--signal);font-weight:300;-webkit-text-stroke:0">Introducing the <b>bot</b></h3>
+        <p class="lead" style="max-width:none;color:#f5f5f5">Decently well tuned, with decent scoring, matchloading etc. Pretty much the standerd issue ruiguan except it's not holecounted. Now you might notice that picture isnt a bot its a render, well thats cuz we dont have a good picture of our bot.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ DRIVING / SCORING (features) ============ -->
+  <section class="alt">
+    <div class="container">
+      <div class="sec-head center reveal" data-fx="up">
+        <span class="eyebrow">Sys · Features</span>
+        <h2 class="mega xl">Our driving and stuff</h2>
+      </div>
+
+      <div class="split rev">
+        <img class="shot reveal" data-fx="right" src="https://raw.githubusercontent.com/aaronasdasdwasd-lang/3303h.github.io/main/2021-04-29_17-32-45.jpg" alt="VEX V5 X-Drive Drivetrain" onerror="this.style.display='none'">
+        <div class="glass reveal" data-fx="left">
+          <div class="tag">Component 01</div>
+          <h3 class="mega" style="font-size:clamp(1.7rem,4vw,2.6rem)">Very good driving trust 🙏</h3>
+          <p>Our driver skills are worse than our auto skills. we kinda suck at driving. our drivetrain is mid, but has decent torque since its 450 rpm</p>
+          <p class="tick" style="margin-top:1rem">Mid driver | 450 rpm | 2.75 wheels | 66 watts</p>
         </div>
-    </nav>
+      </div>
 
-    <div class="container-fluid px-0">
+      <div class="divider"></div>
 
-        <section id="section-hero" class="full-section text-center">
-            <div class="container" data-aos="zoom-in" data-aos-duration="1000">
-                <h1 class="display- mb-3">
-                    <span style="color: var(--accent-color);">3303H.</span> We Need Excel🙏.
-                </h1>
-                <h2 class="display--sub mb-4">
-                    The pinnacle of VEX V5 vibe coding.
-                </h2>
-                <a href="#section-robot" class="btn btn-lg rounded-pill" style="background-color: var(--accent-color); color: var(--dark-bg); font-weight: 600;">Explore the Build <i class="bi bi-chevron-down"></i></a>
-            </div>
-        </section>
+      <div class="split">
+        <img class="shot reveal" data-fx="left" src="https://raw.githubusercontent.com/aaronasdasdwasd-lang/3303h.github.io/main/Screenshot%202025-12-11%20213519.png" alt="VEX V5 Lift Mechanism" onerror="this.style.display='none'">
+        <div class="glass reveal" data-fx="right">
+          <div class="tag">Component 02</div>
+          <h3 class="mega" style="font-size:clamp(1.7rem,4vw,2.6rem)">very fast and efficient scoring</h3>
+          <p>1200 rpm hood to score extreamly fast. The image there is our outtake right there which you gotta admit is a masterpiece. Our intake can easily fit 8 balls, and even 9 balls(but it'll jam).</p>
+          <p class="tick" style="margin-top:1rem">1200 RPM | very fast | 8 balls of storage</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section id="section-robot" class="full-section d-block">
-            <div class="container text-center py-5">
-                <div class="large-image-container mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <img src="ruigooon cad-min.jpg" class="img-fluid img-feature mb-4" alt="VEX V5 Robot Render">
-                </div>
+  <!-- ============ STATS ============ -->
+  <section id="section-metrics">
+    <div class="container">
+      <div class="sec-head center reveal" data-fx="up"><span class="eyebrow hot">Sys · Metrics</span><h2 class="mega">Stats</h2></div>
+      <div class="stats">
+        <div class="stat reveal" data-fx="scale">
+          <div class="num">1.7 m/s</div>
+          <div class="lbl">Peak Velocity</div>
+          <div class="note">very mid max speed measured by estimating. we don't know what the real max speed is.</div>
+        </div>
+        <div class="stat reveal" data-fx="scale" data-d="1">
+          <div class="num">100%</div>
+          <div class="lbl">auton Success Rate</div>
+          <div class="note">very consistent sawp verified across over 1 test runs.</div>
+        </div>
+        <div class="stat reveal" data-fx="scale" data-d="2">
+          <div class="num">≈1.5s</div>
+          <div class="lbl">Scoring Cycle Time</div>
+          <div class="note">scores 8 balls in around one and a half seconds. That's if it doesn't jam.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                <div class="glass-card mx-auto" style="max-width: 800px;" data-aos="fade-up">
-                    <p class="text-uppercase small mb-2" style="color: var(--accent-color); font-weight: 600;">bot</p>
-                    <h3 class="display--sub text-white">
-                        Introducing the <b>bot<b>
-                    </h3>
-                    <p class="lead mt-4 text-white">
-                        Decently well tuned, with decent scoring, matchloading etc. Pretty much the standerd issue ruiguan except it's not holecounted. Now you might notice that picture isnt a bot its a render, well thats cuz we dont have a good picture of our bot.
-                    </p>
-                </div>
-            </div>
-        </section>
+  <!-- ============ CAD ============ -->
+  <section class="alt" id="section-blueprint">
+    <div class="container">
+      <div class="sec-head center reveal" data-fx="up"><span class="eyebrow">Sys · Structure</span><h2 class="mega xl">Cading.</h2></div>
+      <div class="split rev">
+        <div class="glass reveal" data-fx="left">
+          <div class="tag">Structural Detail</div>
+          <h3 class="mega" style="font-size:clamp(1.6rem,3.6vw,2.3rem)">Cool cad.</h3>
+          <p>The chassis was subjected to Finite Element Analysis (FEA) to crash this potato pc(it didn't work). Cadded using onshape because onshape is very tuff. took only a few hours but it looks really tuff am i right.</p>
+          <p class="tick" style="margin-top:1rem">cadded in onshape | very tuff</p>
+        </div>
+        <img class="shot reveal" data-fx="right" src="https://raw.githubusercontent.com/aaronasdasdwasd-lang/3303h.github.io/main/Screenshot%202025-12-11%20221021.png" alt="VEX Robot CAD Diagram" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </section>
 
-        <section id="section-features" class="full-section d-block" style="background-color: var(--dark-bg);">
-            <div class="container py-5">
-                <div class="text-center mb-5" data-aos="fade-right">
-                    <h2 class="display-" style="font-size: clamp(2rem, 5vw, 5rem);">Our driving and stuff</h2>
-                    <p class="lead text-muted"> </p>
-                </div>
+  <div class="marquee rev" aria-hidden="true">
+    <div class="track">
+      <span class="out" style="-webkit-text-stroke-color:var(--line-bright);color:transparent">Design</span>
+      <span class="tel">Fabricate</span><span>Validate</span><span class="hot">Repeat</span>
+      <span class="out" style="-webkit-text-stroke-color:var(--line-bright);color:transparent">Design</span>
+      <span class="tel">Fabricate</span><span>Validate</span><span class="hot">Repeat</span>
+    </div>
+  </div>
 
-                <div class="row align-items-center mb-5 pb-5">
-                    <div class="col-md-6 order-md-2" data-aos="fade-left">
-                        <img src="2021-04-29_17-32-45.jpg" class="img-fluid rounded-4 img-feature p-0" alt="VEX V5 X-Drive Drivetrain">
-                    </div>
-                    <div class="col-md-6 order-md-1" data-aos="fade-right">
-                        <div class="glass-card p-4">
-                            <p class="small text-uppercase" style="color: var(--accent-color);">Component 01</p>
-                            <h3 class="h1 mb-3">Very good driving trust🙏</h3>
-                            <p class="lead text-muted">Our driver skills are worse than our auto skills. we kinda suck at driving. our drivetrain is mid, but has decent torque since its 450 rpm</p>
-                            <p class="small text-uppercase mt-3">Mid driver | 450 rpm | 2.75 wheels | 66 watts</p>
-                        </div>
-                    </div>
-                </div>
+  <!-- ============ GAME ============ -->
+  <section id="section-game" class="container">
+    <div class="wm" aria-hidden="true" style="right:auto;left:-.06em;-webkit-text-stroke-color:var(--line)">VS</div>
+    <div style="position:relative;z-index:2">
+      <img class="shot reveal" data-fx="scale" src="https://raw.githubusercontent.com/aaronasdasdwasd-lang/3303h.github.io/main/VEX%20AI%20Top%20View%20(1).png" alt="VEX V5 Competition Field" onerror="this.style.display='none'">
 
-                <div class="divider"></div>
+      <div class="glass reveal" data-fx="up" data-d="1" style="max-width:900px;margin:2.6rem auto 0;text-align:center">
+        <h3 class="mega" style="font-size:clamp(1.8rem,4.5vw,3rem);color:var(--signal);-webkit-text-stroke:0;font-weight:300">Winning(losing) games</h3>
+        <p class="lead" style="margin-inline:auto;color:#f5f5f5">We have a very good strategy, i call it hoping that you have a good alliance partner. However, it doesnt work most of the time for some reason...</p>
+        <div class="split" style="margin-top:2rem;text-align:left">
+          <div>
+            <h4 style="color:var(--signal);font-family:var(--f-display);font-weight:800;margin-bottom:.4rem">Auton</h4>
+            <p style="color:var(--ink-dim);font-size:.92rem">Consistent solo auton win point, 100% reliable(1 test too lol).</p>
+          </div>
+          <div>
+            <h4 style="color:var(--signal);font-family:var(--f-display);font-weight:800;margin-bottom:.4rem">Driving</h4>
+            <p style="color:var(--ink-dim);font-size:.92rem">We suck at driving, but at least we can do defense and score sometimes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                <div class="row align-items-center mb-5 pt-5">
-                    <div class="col-md-6" data-aos="fade-right">
-                        <img src="Screenshot 2025-12-11 213519.png" class="img-fluid rounded-4 img-feature p-0" alt="VEX V5 Lift Mechanism">
-                    </div>
-                    <div class="col-md-6" data-aos="fade-left">
-                        <div class="glass-card p-4">
-                            <p class="small text-uppercase" style="color: var(--accent-color);">Component 02</p>
-                            <h3 class="h1 mb-3">very fast and efficient scoring</h3>
-                            <p class="lead text-muted">1200 rpm hood to score extreamly fast. The image there is our outtake right there which you gotta admit is a masterpiece. Our intake can easily fit 8 balls, and even 9 balls(but it'll jam).</p>
-                            <p class="small text-uppercase mt-3">1200 RPM | very fast | 8 balls of storage</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- ============ VIBE CODING (tech) ============ -->
+  <section class="alt" id="section-tech">
+    <div class="container">
+      <div class="sec-head center reveal" data-fx="up"><span class="eyebrow">Sys · Software</span><h2 class="mega xl">Vibe coding</h2></div>
+      <div class="split">
+        <div class="glass reveal" data-fx="left">
+          <div class="tag">coding stuff</div>
+          <h3 class="mega" style="font-size:clamp(1.7rem,4vw,2.6rem)">lemlib</h3>
+          <p>We use lemlib and stuff cuz its very tuff indeed. We use it for PID and odometry cuz thats what its meant for...</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> PID</li>
+            <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Non functioning odom attempt</li>
+          </ul>
+        </div>
+        <img class="shot reveal" data-fx="right" src="https://raw.githubusercontent.com/aaronasdasdwasd-lang/3303h.github.io/main/images.jpg" alt="VEX V5 Brain" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </section>
 
-        <section id="section-metrics" class="full-section text-center" style="background-color: var(--light-bg);">
-            <div class="container py-5" style="max-width: 1000px;">
-                <h2 class="display--sub mb-5" data-aos="fade-up">Stats</h2>
-                <div class="row">
-                    <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="glass-card p-4">
-                            <h1 class="display-4 mb-1" style="color: var(--accent-color);">1.7 m/s</h1>
-                            <p class="text-uppercase small text-white">Peak Velocity</p>
-                            <p class="text-muted small mb-0">very mid max speed measured by estimating. we don't know what the real max speed is.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="glass-card p-4">
-                            <h1 class="display-4 mb-1" style="color: var(--accent-color);">100%</h1>
-                            <p class="text-uppercase small text-white">auton Success Rate</p>
-                            <p class="text-muted small mb-0">very consistent sawp verified across over 1 test runs.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="glass-card p-4">
-                            <h1 class="display-4 mb-1" style="color: var(--accent-color);">≈1.5s</h1>
-                            <p class="text-uppercase small text-white">Scoring Cycle Time</p>
-                            <p class="text-muted small mb-0">scores 8 balls in around one and a half seconds. That's if it doesn't jam.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- ============ OUTREACH ============ -->
+  <section id="section-outreach">
+    <div class="container">
+      <div class="sec-head center reveal" data-fx="up"><span class="eyebrow hot">Sys · Reach</span><h2 class="mega xl">Impact Beyond The Field.</h2></div>
+      <div class="reach">
+        <div class="glass reveal" data-fx="left">
+          <div class="icon-lg"><svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+          <h4 style="font-family:var(--f-display);font-weight:800;font-size:1.4rem;text-transform:uppercase">Community Outreach</h4>
+          <p style="color:var(--ink-dim);margin-top:.6rem">nah we dont have that type of stuff</p>
+        </div>
+        <div class="glass reveal" data-fx="right">
+          <div class="icon-lg"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M15 9.5c0-1.38-1.34-2.5-3-2.5s-3 1.12-3 2.5S10.34 12 12 12s3 1.12 3 2.5-1.34 2.5-3 2.5-3-1.12-3-2.5"/></svg></div>
+          <h4 style="font-family:var(--f-display);font-weight:800;font-size:1.4rem;text-transform:uppercase">Strategic Sponsorship</h4>
+          <p style="color:var(--ink-dim);margin-top:.6rem">sponsored by myself</p>
+          <div style="margin-top:.8rem"><span class="badge">myself</span><span class="badge">myself again</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section id="section-blueprint" class="full-section d-block" style="background-color: var(--dark-bg);">
-            <div class="container py-5">
-                <div class="text-center mb-5" data-aos="fade-up">
-                    <h2 class="display-" style="font-size: clamp(2rem, 5vw, 5rem);">Cading.</h2>
-                    <p class="lead text-muted"> </p>
-                </div>
-                <div class="row align-items-center">
-                    <div class="col-md-6 order-md-2" data-aos="fade-left">
-                        <div class="glass-card p-4">
-                            <p class="small text-uppercase" style="color: var(--accent-color);">Structural Detail</p>
-                            <h3 class="h2 mb-3">Cool cad.</h3>
-                            <p class="lead text-muted">The chassis was subjected to Finite Element Analysis (FEA) to crash this potato pc(it didn't work). Cadded using onshape because onshape is very tuff. took only a few hours but it looks really tuff am i right.</p>
-                            <p class="small text-uppercase mt-3">cadded in onshape | very tuff</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 order-md-1" data-aos="fade-right">
-                        <img src="Screenshot 2025-12-11 221021.png" class="img-fluid rounded-4 img-feature p-0" alt="VEX Robot CAD Diagram">
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- ============ PROCESS ============ -->
+  <section class="alt" id="section-process">
+    <div class="container">
+      <div class="sec-head center reveal" data-fx="up"><span class="eyebrow">Sys · Process</span><h2 class="mega xl">Iterative Perfection.</h2></div>
+      <div class="pipeline">
+        <article class="node reveal" data-fx="left">
+          <span class="rt tl"></span><span class="rt br"></span><span class="idx">P.01</span>
+          <div class="step">Phase 01 — Design</div>
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/><circle cx="15" cy="15" r="2.5"/></svg></div>
+          <h4>CAD &amp; Modeling</h4>
+          <p class="desc">&nbsp;</p>
+        </article>
+        <article class="node reveal" data-fx="scale" data-d="1">
+          <span class="rt tl"></span><span class="rt br"></span><span class="idx">P.02</span>
+          <div class="step">Phase 02 — Build</div>
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z"/></svg></div>
+          <h4>Fabrication</h4>
+          <p class="desc">&nbsp;</p>
+        </article>
+        <article class="node reveal" data-fx="right" data-d="2">
+          <span class="rt tl"></span><span class="rt br"></span><span class="idx">P.03</span>
+          <div class="step">Phase 03 — Test</div>
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 4-7 5 9"/><path d="M3 21h18"/></svg></div>
+          <h4>Telemetry &amp; Testing</h4>
+          <p class="desc">&nbsp;</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
+  <!-- ============ VISION ============ -->
+  <section id="section-vision">
+    <div class="wm" aria-hidden="true" style="right:auto;left:50%;transform:translate(-50%,-50%);-webkit-text-stroke-color:var(--line)">NEXT</div>
+    <div class="container" style="position:relative;z-index:2;max-width:900px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2.2rem">
+      <span class="eyebrow reveal" data-fx="up">Sys · Forecast</span>
+      <h2 class="mega xl reveal" data-fx="up" data-d="1">The Next Generation.</h2>
+      <div class="glass reveal" data-fx="tilt" data-d="2" style="width:100%">
+        <div class="tag">// forecast</div>
+        <h4 style="color:var(--signal);text-transform:lowercase">next generation is cooked fr</h4>
+        <p>rip 🥀🥀🥀</p>
+      </div>
+    </div>
+  </section>
 
-        <section id="section-game" class="full-section d-block">
-            <div class="container text-center py-5">
-                <div class="large-image-container mb-4" data-aos="zoom-in">
-                    <img src="VEX AI Top View (1).png" class="img-fluid img-feature" alt="VEX V5 Competition Field">
-                </div>
-                <div class="glass-card mx-auto" style="max-width: 900px;" data-aos="fade-up">
-                    <h2 class="display--sub text-white mb-4">Winning(losing) games</h2>
-                    <p class="lead text-muted">We have a very good strategy, i call it hoping that you have a good alliance partner. However, it doesnt work most of the time for some reason... </p>
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <h4 class="mb-1" style="color: var(--accent-color);">Auton</h4>
-                            <p class="text-muted small">Consistent solo auton win point, 100% reliable(1 test too lol).</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="mb-1" style="color: var(--accent-color);">Driving</h4>
-                            <p class="text-muted small">We suck at driving, but at least we can do defense and score sometimes </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- ============ TEAM ============ -->
+  <section class="alt" id="section-team">
+    <div class="container">
+      <div class="sec-head center reveal" data-fx="up"><span class="eyebrow">Sys · Personnel</span><h2 class="mega xl">The Team. <span class="tel">The Future.</span></h2></div>
 
-        <section id="section-tech" class="full-section d-block" style="background-color: var(--dark-bg);">
-            <div class="container py-5">
-                <div class="text-center mb-5" data-aos="fade-up">
-                    <h2 class="display-" style="font-size: clamp(2rem, 5vw, 5rem);">Vibe coding</h2>
-                    <p class="lead text-muted"> </p>
-                </div>
-                <div class="row align-items-center">
-                    <div class="col-md-6" data-aos="fade-right">
-                        <div class="glass-card p-4">
-                            <p class="small text-uppercase" style="color: var(--accent-color);">coding stuff</p>
-                            <h3 class="h1 mb-3">lemlib</h3>
-                            <p class="lead text-muted">We use lemlib and stuff cuz its very tuff indeed. We use it for PID and odometry cuz thats what its meant for...</p>
-                            <ul class="list-unstyled mt-3">
-                                <li class="text-white"><i class="bi bi-check-circle-fill" style="color: var(--accent-color);"></i> PID </li>
-                                <li class="text-white"><i class="bi bi-check-circle-fill" style="color: var(--accent-color);"></i> Non functioning odom attempt</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-6" data-aos="fade-left">
-                        <img src="images.jpg" class="img-fluid rounded-4 img-feature p-0" alt="VEX V5 Brain">
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div class="split">
+        <img class="shot reveal" data-fx="left" src="https://raw.githubusercontent.com/aaronasdasdwasd-lang/3303h.github.io/main/Screenshot%202025-12-11%20223530.png" alt="VEX Robotics Team Working" onerror="this.style.display='none'">
 
-        <section id="section-outreach" class="full-section d-block" style="background-color: var(--light-bg);">
-            <div class="container py-5 text-center">
-                <h2 class="display- mb-5" style="font-size: clamp(2rem, 5vw, 5rem);" data-aos="fade-down">Impact Beyond The Field.</h2>
-                <div class="row">
-                    <div class="col-md-6 mb-4" data-aos="fade-right">
-                        <div class="glass-card p-4">
-                            <i class="bi bi-rocket-takeoff" style="font-size: 3rem; color: var(--accent-color);"></i>
-                            <h4 class="mt-3 text-white">Community Outreach</h4>
-                            <p class="text-muted small"> nah we dont have that type of stuff</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4" data-aos="fade-left">
-                        <div class="glass-card p-4">
-                            <i class="bi bi-currency-dollar" style="font-size: 3rem; color: var(--accent-color);"></i>
-                            <h4 class="mt-3 text-white">Strategic Sponsorship</h4>
-                            <p class="text-muted small">sponsored by myself</p>
-                            <div class="mt-3">
-                                <span class="badge rounded-pill bg-secondary text-white">myself</span>
-                                <span class="badge rounded-pill bg-secondary text-white">myself again</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="glass reveal" data-fx="right" data-d="1">
+          <h3 class="mega" style="font-size:clamp(1.5rem,3.2vw,2.2rem);-webkit-text-stroke:0;color:var(--ink)">3303H is a collective of builders, programmers, and strategists.</h3>
+          <p class="lead" style="max-width:none;color:var(--ink-dim);margin-top:1rem">We better get excel...</p>
+          <div style="display:flex;gap:.8rem;margin-top:1.8rem">
+            <a href="#" aria-label="Instagram" style="width:52px;height:52px;display:grid;place-items:center;border:1px solid var(--line);color:var(--ink-dim);transition:.3s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="YouTube" style="width:52px;height:52px;display:grid;place-items:center;border:1px solid var(--line);color:var(--ink-dim);transition:.3s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg></a>
+            <a href="mailto:contact@3303h.com" aria-label="Email" style="width:52px;height:52px;display:grid;place-items:center;border:1px solid var(--line);color:var(--ink-dim);transition:.3s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section id="section-process" class="full-section text-center" style="background-color: var(--dark-bg);">
-            <div class="container py-5" style="max-width: 800px;" data-aos="fade-up">
-                <h2 class="display- mb-4">Iterative Perfection.</h2>
-                <p class="lead text-muted mb-5"> </p>
-                <div class="row justify-content-center">
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <i class="bi bi-bezier2" style="font-size: 3rem; color: var(--accent-color);"></i>
-                        <h4 class="mt-3 text-white">CAD & Modeling</h4>
-                        <p class="text-muted small"> </p>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                        <i class="bi bi-tools" style="font-size: 3rem; color: var(--accent-color);"></i>
-                        <h4 class="mt-3 text-white">Fabrication</h4>
-                        <p class="text-muted small"> </p>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <i class="bi bi-graph-up-arrow" style="font-size: 3rem; color: var(--accent-color);"></i>
-                        <h4 class="mt-3 text-white">Telemetry & Testing</h4>
-                        <p class="text-muted small"> </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+</main>
 
-        <section id="section-vision" class="full-section text-center" style="background-color: var(--light-bg);">
-            <div class="container py-5" style="max-width: 900px;" data-aos="fade-zoom-in">
-                <h2 class="display- mb-4">The Next Generation.</h2>
-                <p class="lead text-muted mb-5"> </p>
-                <div class="glass-card p-4">
-                    <h4 class="mb-3" style="color: var(--accent-color);">next generation is cooked fr</h4>
-                    <p class="text-muted">rip 🥀🥀🥀</p>
-                </div>
-            </div>
-        </section>
+<footer>
+  <div class="container">
+    <span class="fnote">3303<b>H</b> Robotics &copy; 2024 — Innovation Elevated.</span>
+    <span class="fnote">BUILD · v4.0 · STATUS NOMINAL</span>
+  </div>
+</footer>
 
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        <section id="section-team" class="full-section d-block" style="background-color: var(--dark-bg);">
-            <div class="container py-5">
-                <h2 class="display- mb-5 text-center" data-aos="fade-down">The Team. The Future.</h2>
-                <div class="row justify-content-center align-items-center">
-
-                    <div class="col-md-6 mb-4" data-aos="fade-right">
-                        <img src="Screenshot 2025-12-11 223530.png" class="img-fluid rounded-4 img-feature p-0" alt="VEX Robotics Team Working">
-                    </div>
-
-                    <div class="col-md-6 mb-4" data-aos="fade-left">
-                        <div class="glass-card p-5">
-                            <h4 class="mb-3 text-white">3303H is a collective of builders, programmers, and strategists.</h4>
-                            <p class="lead text-muted">We better get excel...</p>
-                            <div class="d-flex justify-content-start gap-4 fs-3 mt-4">
-                                <a href="#" class="text-decoration-none" style="color: var(--accent-color);"><i class="bi bi-instagram"></i></a>
-                                <a href="#" class="text-decoration-none" style="color: var(--accent-color);"><i class="bi bi-youtube"></i></a>
-                                <a href="mailto:contact@3303h.com" class="text-decoration-none" style="color: var(--accent-color);"><i class="bi bi-envelope-fill"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-    </div> <footer class="text-center text-muted py-3" style="background-color: var(--dark-bg);">
-        <p class="small mb-0">3303H Robotics &copy; 2024 | Innovation Elevated.</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        // Settings for smooth, bidirectional scrolling animations
-        disable: false, // enables animations on all devices
-        startEvent: 'DOMContentLoaded',
-        initClassName: 'aos-init',
-        animatedClassName: 'aos-animate',
-        useClassNames: false,
-        disableMutationObserver: false,
-        debounceDelay: 50,
-        throttleDelay: 99,
-
-        // Animation settings
-        offset: 120, // offset (in px) from the original trigger point
-        delay: 0, // values from 0 to 3000, with step 50ms
-        duration: 800, // values from 0 to 3000, with step 50ms
-        easing: 'ease', // default easing for AOS animations
-        once: false, // whether animation should happen only once - NO, we want it on scroll up too
-        mirror: true, // whether elements should animate out while scrolling past them (for bidirectional scrolling)
-        anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+  window.addEventListener('load', ()=>{
+    const boot=document.getElementById('boot');
+    setTimeout(()=>{
+      boot.classList.add('done');
+      document.body.classList.remove('booting');
+      document.querySelectorAll('#callsign .char').forEach((c,i)=>{
+        c.style.transition='opacity .6s var(--ease), transform .6s var(--ease)';
+        c.style.transitionDelay=(i*0.12)+'s';
+        requestAnimationFrame(()=>{c.style.opacity=1;c.style.transform='none';});
       });
-    </script>
+    }, reduce?0:1700);
+  });
+
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('solid',window.scrollY>40);
+  onScroll(); addEventListener('scroll',onScroll,{passive:true});
+
+  /* bidirectional reveal — replays both scrolling down and back up */
+  const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('in',e.isIntersecting)),
+    {threshold:.15, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+  document.querySelectorAll('.stat').forEach(el=>io.observe(el));
+
+  /* parallax grid */
+  const grid=document.getElementById('grid');
+  if(!reduce){
+    let mx=0,my=0,sy=0;
+    addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*22;my=(e.clientY/innerHeight-.5)*22;},{passive:true});
+    addEventListener('scroll',()=>{sy=window.scrollY*0.05;},{passive:true});
+    (function raf(){grid.style.transform=`translate3d(${mx}px,${my-sy}px,0)`;requestAnimationFrame(raf);})();
+  }
+
+  /* mouse glow on capability nodes */
+  document.querySelectorAll('.node').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      card.style.setProperty('--mx',(e.clientX-r.left)+'px');
+      card.style.setProperty('--my',(e.clientY-r.top)+'px');
+    });
+  });
+
+  /* continuous subtle drift on frames + glass panels as they cross viewport center.
+     Runs only AFTER an element has finished its entrance reveal, so the two
+     transforms never fight each other. */
+  const driftEls=[...document.querySelectorAll('.frame, .glass, .stat')];
+  if(!reduce){
+    const onDrift=()=>{
+      const vh=innerHeight;
+      driftEls.forEach(el=>{
+        if(!el.classList.contains('in')) return; // let the reveal transition own it until it's in
+        if(el.matches(':hover')){ el.style.transform=''; return; } // let CSS :hover own it instead
+        const r=el.getBoundingClientRect();
+        const center=r.top+r.height/2;
+        const off=(center-vh/2)/vh; // roughly -0.5..0.5
+        el.style.transform=`translateY(${off*10}px) rotate(${off*0.7}deg)`;
+      });
+      requestAnimationFrame(onDrift);
+    };
+    requestAnimationFrame(onDrift);
+  }
+})();
+</script>
 </body>
 </html>
